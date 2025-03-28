@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+    img {
+      width: 100vw;
+      height: 100dvh;
+      object-fit: cover;
+      position: fixed;
+    }
+
+    main {
+      height: 700dvh;
+    }
+
+    header {
+      background: linear-gradient(to bottom, #000000, #00000000);
+      width: 500px;
+      height: 500px;
+      border-radius: 1000px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      margin-top: -360px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      animation: slideInDown 1500ms ease-out;
+
+    img	{
+      width: 250px;
+      margin: 0 auto;
+      height: auto;
+      margin-bottom: 20px;
+    }
+  }
+
+  @keyframes slideInDown {
+    from {
+      transform: translate3d(-50%,-100%, 0);
+      opacity: 0;
+    }
+    to {
+      transform: translate3d(-50%,0, 0);
+      opacity: 1;
+    }
+  }
+  </style>
+
+  <script type="module">
+    const MAX_FRAMES = 405; // Número total de fotogramas
+
+    const img = document.querySelector('#img');
+
+    // Altura máxima del scroll
+    let maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+
+    window.addEventListener('resize', () => { //verificar las comillas 
+      maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    });
+
+    window.addEventListener("scroll", () => {
+      //Posición actual del scroll
+      const scrollPosition = window.scrollY;
+      // Calcular el porcentaje del scroll
+      const scrollFraction = scrollPosition / maxScroll;
+      // Que frame se va a mostrar
+      const frame = Math.floor(scrollFraction * MAX_FRAMES) || 1
+      // Creamos el id del nombre del archivo
+      const id = frame.toString().padStart(4, '0') // Agregars a la izquierda cero
+
+      img.src = `/Frames/${id}.webp`;
+    });
+  </script>
+</head>
+
+<body>
+  <main>
+    <header>
+      <img src="SVG/Titulo-sentinel-lab.svg" alt="Sentinel Lab">
+    </header>
+    <img id="img" src="/Frames/0001.webp" alt="">
+  </main>
+</body>
+
+</html>
