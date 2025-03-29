@@ -57,43 +57,70 @@
       opacity: 1;
     }
   }
-  </style>
+  .loading-indicator {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+  }
+
+  .images-loaded .loading-indicator {
+    display: none;
+  }
+</style>
 
 <script type="module">
-  const MAX_FRAMES = 807; // Número total de fotogramas
+  const MAX_FRAMES = 807;
+  let imagesLoaded = 0;
 
-  // Función para precargar las imágenes
-  const preloadImages = () => {
-      for (let i = 1; i <= MAX_FRAMES; i++) {
-          const img = new Image();
-          const id = i.toString().padStart(4, '0'); // 0001, 0002, ...
-          img.src = `Frames/${id}.webp`;
+  // Función para throttle del scroll
+  function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+      if (!inThrottle) {
+        func.apply(this, args);
+        inThrottle = true;
+        setTimeout(() => inThrottle = false, limit);
       }
+    }
+  }
+
+  const preloadImages = () => {
+    for (let i = 1; i <= MAX_FRAMES; i++) {
+      const img = new Image();
+      const id = i.toString().padStart(4, '0');
+      img.onload = () => {
+        imagesLoaded++;
+        if (imagesLoaded === MAX_FRAMES) {
+          document.body.classList.add('images-loaded');
+        }
+      };
+      img.onerror = () => console.error(`Failed to load image: ${id}.webp`);
+      img.src = `Frames/${id}.webp`;
+    }
   };
 
-  window.addEventListener("load", preloadImages); // Precarga las imágenes al cargar la página
-
   const img = document.querySelector('#img');
-
-  // Altura máxima del scroll
   let maxScroll = document.documentElement.scrollHeight - window.innerHeight;
 
   window.addEventListener('resize', () => {
-      maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    maxScroll = document.documentElement.scrollHeight - window.innerHeight;
   });
 
-  window.addEventListener("scroll", () => {
-      // Posición actual del scroll
-      const scrollPosition = window.scrollY;
-      // Calcular el porcentaje del scroll
-      const scrollFraction = scrollPosition / maxScroll;
-      // Qué frame se va a mostrar
-      const frame = Math.floor(scrollFraction * MAX_FRAMES) || 1;
-      // Creamos el id del nombre del archivo
-      const id = frame.toString().padStart(4, '0'); // Agregar ceros a la izquierda
-
+  const updateFrame = throttle(() => {
+    const scrollPosition = window.scrollY;
+    const scrollFraction = Math.max(0, Math.min(1, scrollPosition / maxScroll));
+    const frame = Math.min(MAX_FRAMES, Math.max(1, Math.floor(scrollFraction * MAX_FRAMES) || 1));
+    const id = frame.toString().padStart(4, '0');
+    
+    requestAnimationFrame(() => {
       img.src = `Frames/${id}.webp`;
-  });
+    });
+  }, 16); // Aproximadamente 60fps
+
+  window.addEventListener("scroll", updateFrame);
+  window.addEventListener("load", preloadImages);
 </script>
 
 </head>
