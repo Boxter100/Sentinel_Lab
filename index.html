@@ -86,19 +86,19 @@
 
   #box1 {
     width: 350px;
-    top: 30%;
+    top: 25%;
     left: 65%;
   }
 
   #box2 {
-    width: 350px;
+    width: 400px;
     top: 40%;
     left: 65%;
   }
 
   #box3 {
     width: 450px;
-    bottom: 70%;
+    bottom: 75%;
     left: 66%;
   }
   #box4 {
@@ -127,14 +127,8 @@
 
   #box8 {
     width: 400px;
-    bottom: 45%;
+    bottom: 35%;
     right: 65%;
-  }
-
-  #box9 {
-    width: 400px;
-    bottom: 45%;
-    right: 10%;
   }
 
   .info-box.visible {
@@ -260,13 +254,6 @@
       } else {
         box8.classList.remove('visible');
       }
-      // Control de visibilidad para box9
-      const box9 = document.querySelector('#box9');
-      if (frame >= 780 && frame <= 807) {
-        box9.classList.add('visible'); 
-      } else {
-        box9.classList.remove('visible');
-      }
     });
   }, 16); // Aproximadamente 60fps
 
@@ -288,6 +275,12 @@
       <p>Switch metalico en estilo minimalista</p>
       <h3>Puertos USB</h3>
       <p>Dos puertos USB 3.0, transferencias rápidas con velocidad de hasta 5 Gbps</p>
+      <h3>Tornilleria</h3>
+      <p>Tornillos 3mm de cabeza Allen </p>
+      <P>Postes 3mm x 4mm</P>
+      <p>Postes 3mm x 8mm</p>
+      <p>Tuercas 3mm</p>
+
     </div>
     
     <div id="box2" class="info-box">
@@ -301,14 +294,14 @@
     </div>    
 
     <div id="box4" class="info-box">
-      <h3>Soporte paralelo</h3>
+      <h3>Soporte Paralelo</h3>
       <p>Soporte en paralelo para refrigeración liquida de hasta 320mm</p>
     </div>
 
     <div id="box5" class="info-box">
-      <h3>Soporte perpendicular</h3>
+      <h3>Soporte Perpendicular</h3>
       <p>Soporte en perpendicular para refrigeración liquida de hasta 320mm</p>
-      <h3>Orificios chasis</h3>
+      <h3>Orificios Chasis</h3>
       <p>Dos orificios en el chasis para una correcta gestion de cables</p>
     </div>
 
@@ -325,16 +318,13 @@
     </div>
 
     <div id="box8" class="info-box">
-      <h3>Rita</h3>
+      <h3>Ritaá 077</h3>
       <p>Modelo: 004</p>
       <p>Revisón: 029</p>
       <p>Fecha de Diseño: 2024-02-08</p>
       <p>Diseñador: Boxter</p>
-    </div>
-
-    <div id="box9" class="info-box">
       <h3>Precio</h3>
-      <p>$3,300</p>
+      <p>$3,300 MXN</p>
       <p>Envio incluido</p>
       <p>Envio a toda la Republica Mexicana</p>
     </div>
