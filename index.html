@@ -68,6 +68,92 @@
   .images-loaded .loading-indicator {
     display: none;
   }
+
+  /* Añadir a los estilos existentes */
+  .info-box {
+    position: fixed;
+    /* propiedades compartidas */
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  #box1 {
+    width: 400px;
+    top: 40%;
+    left: 65%;
+  }
+
+  #box2 {
+    width: 300px;
+    top: 40%;
+    right: 15%;
+  }
+
+  #box3 {
+    width: 450px;
+    bottom: 70%;
+    left: 69%;
+  }
+  #box4 {
+    width: 400px;
+    bottom: 45%;
+    right: 65%;
+  }
+
+  #box5 {
+    width: 400px;
+    bottom: 45%;
+    right: 65%;
+  }
+
+  #box6 {
+    width: 400px;
+    bottom: 45%;
+    right: 65%;
+  }
+
+  #box7 {
+    width: 400px;
+    bottom: 45%;
+    right: 65%;
+  }
+
+  #box8 {
+    width: 400px;
+    bottom: 45%;
+    right: 65%;
+  }
+
+  #box9 {
+    width: 400px;
+    bottom: 45%;
+    right: 10%;
+  }
+
+  .info-box.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  .info-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 2.5rem;
+    color: #4a9eff;
+  }
+
+  .info-box p {
+    margin: 0;
+    line-height: 1.5;
+    font-size: 1.5rem;
+  }
+
 </style>
 
 <script type="module">
@@ -116,6 +202,72 @@
     
     requestAnimationFrame(() => {
       img.src = `Frames/${id}.webp`;
+      
+      // Control de visibilidad para box1
+      const box1 = document.querySelector('#box1');
+      if (frame >= 40 && frame <= 80) {
+        box1.classList.add('visible');
+      } else {
+        box1.classList.remove('visible');
+      }
+  
+      // Control de visibilidad para box2
+      const box2 = document.querySelector('#box2');
+      if (frame >= 130 && frame <= 170) {
+        box2.classList.add('visible');
+      } else {
+        box2.classList.remove('visible');
+      }
+  
+      // Control de visibilidad para box3
+      const box3 = document.querySelector('#box3');
+      if (frame >= 220 && frame <= 250) {
+        box3.classList.add('visible');
+      } else {
+        box3.classList.remove('visible');
+      }
+      // Control de visibilidad para box4
+      const box4 = document.querySelector('#box4');
+      if (frame >= 320 && frame <= 350) {
+        box4.classList.add('visible'); 
+      } else {
+        box4.classList.remove('visible'); 
+      }
+      // Control de visibilidad para box5
+      const box5 = document.querySelector('#box5');
+      if (frame >= 470 && frame <= 550) {
+        box5.classList.add('visible'); 
+      } else {
+        box5.classList.remove('visible'); 
+      }
+      // Control de visibilidad para box6
+      const box6 = document.querySelector('#box6');
+      if (frame >= 610 && frame <= 640) {
+        box6.classList.add('visible'); 
+      } else {
+        box6.classList.remove('visible');
+      }
+      // Control de visibilidad para box7
+      const box7 = document.querySelector('#box7');
+      if (frame >= 690 && frame <= 710) {
+        box7.classList.add('visible'); 
+      } else {
+        box7.classList.remove('visible');
+      }
+      // Control de visibilidad para box8
+      const box8 = document.querySelector('#box8');
+      if (frame >= 760 && frame <= 807) {
+        box8.classList.add('visible'); 
+      } else {
+        box8.classList.remove('visible');
+      }
+      // Control de visibilidad para box9
+      const box9 = document.querySelector('#box9');
+      if (frame >= 780 && frame <= 807) {
+        box9.classList.add('visible'); 
+      } else {
+        box9.classList.remove('visible');
+      }
     });
   }, 16); // Aproximadamente 60fps
 
@@ -131,6 +283,51 @@
       <img src="SVG/Titulo-sentinel-lab.svg" alt="Sentinel Lab">
     </header>
     <img id="img" src="Frames/0001.webp" alt="">
+    
+    <div id="box1" class="info-box">
+      <h3>Botón de Encendido</h3>
+      <p>Sistema de encendido inteligente con LED indicador de estado y respuesta táctil.</p>
+    </div>
+    
+    <div id="box2" class="info-box">
+      <h3>Mini ITX</h3>
+      <p>Conectividad USB 3.0 de alta velocidad con múltiples puertos para todos tus dispositivos.</p>
+    </div>
+    
+    <div id="box3" class="info-box">
+      <h3>PSU ATX SFX</h3>
+      <p>Diseño minimalista con acabado premium y controles de acceso rápido.</p>
+    </div>
+
+    <div id="box4" class="info-box">
+      <h3>Soporte paralelo</h3>
+      <p>Diseño minimalista con acabado premium y controles de acceso rápido.</p>
+    </div>
+
+    <div id="box5" class="info-box">
+      <h3>Soporte perpendicular</h3>
+      <p>Diseño minimalista con acabado premium y controles de acceso rápido.</p>
+    </div>
+
+    <div id="box6" class="info-box">
+      <h3>GPU</h3>
+      <p>Diseño minimalista con acabado premium y controles de acceso rápido.</p>
+    </div>
+
+    <div id="box7" class="info-box">
+      <h3>io shield 3x braket</h3>
+      <p>Diseño minimalista con acabado premium y controles de acceso rápido.</p>
+    </div>
+
+    <div id="box8" class="info-box">
+      <h3>Rita</h3>
+      <p>Diseño minimalista con acabado premium y controles de acceso rápido.</p>
+    </div>
+
+    <div id="box9" class="info-box">
+      <h3>$3,300</h3>
+      <p>Diseño minimalista con acabado premium y controles de acceso rápido.</p>
+    </div>
   </main>
 </body>
 
